@@ -1,21 +1,17 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PyramidalHorn : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField DisplayAngleRotate;
+    [SerializeField] private TextMeshProUGUI DisplayAngleRotate;
+    [SerializeField] private Slider SliderAngleRotate;
 
     public float AngleRotate = 0f; // угол поворота пирамидальной рупорной антенны
 
     private void Update()
     {
-        if (float.TryParse(DisplayAngleRotate.text, out float ParseAngleRotate))
-        {
-            AngleRotate = ParseAngleRotate;
-        }
-        else
-        {
-            AngleRotate = 0f;
-        }
+        AngleRotate = SliderAngleRotate.value;
+        DisplayAngleRotate.text = "Угол поворота рупора: " + AngleRotate.ToString() +" градусов";
     }
 }

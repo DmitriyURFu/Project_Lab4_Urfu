@@ -1,13 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerSupply : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField DisplayAmperage;
+    [SerializeField] private TextMeshProUGUI DisplayAmperage;
+    [SerializeField] private Slider SliderAmperage;
+    [SerializeField] private Toggle ToggleIsActive;
 
     [Range(0.0f, 0.6f)] private float Amperage = 0f; // сила тока (I)
     private float StrengthMagneticField = 0f; // напряженность магнитного поля (H0)
-    private bool isActive = true; // флаг включения прибора
     public float MagnetizationFerrite = 0f; // намагниченность феррита (M0)
 
     private const float MagnetizationFerriteSaturation = 50000f;
@@ -18,17 +20,19 @@ public class PowerSupply : MonoBehaviour
 
     private void Update()
     {
-        if (isActive)
+        if (ToggleIsActive.isOn)
         {
-            if (float.TryParse(DisplayAmperage.text, out float ParseAmperage))
-                Amperage = ParseAmperage;
+            Amperage = SliderAmperage.value;
+            DisplayAmperage.text = "Сила тока: " + Amperage.ToString() + " А";
             CalculateStrengthMagneticField();
             CalculateMagnetizationFerrite();
         }
         else
         {
+            DisplayAmperage.text = "Сила тока: ";
             Amperage = 0f;
-            StrengthMagneticField = 0f;
+            CalculateStrengthMagneticField();
+            CalculateMagnetizationFerrite();
         }
     }
     private void CalculateStrengthMagneticField()

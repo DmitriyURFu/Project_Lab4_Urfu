@@ -1,15 +1,18 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class MicrowaveGenerator : MonoBehaviour
 {
-    [SerializeField] private TMP_InputField DisplayFrequency;
-    [SerializeField] private TMP_InputField DisplayOutputPower;
+    [SerializeField] private TextMeshProUGUI DisplayFrequency;
+    [SerializeField] private TextMeshProUGUI DisplayOutputPower;
     [SerializeField] private PowerSupply PowerSupply;
+    [SerializeField] private Slider SliderFrequency;
+    [SerializeField] private Slider SliderOutputPower;
+    [SerializeField] public Toggle ToggleIsActive;
 
     private float Frequency = 0f; // частота магнитного поля (f)
     public float OutputPower = 0f; // выходная мощность в дБ
-    private bool isActive = true; // флаг включения прибора
     private float WaveNumber = 0f; // волновое число (B0)
     public float AnglePolarization = 0f; // угол поляризации (O)
 
@@ -21,20 +24,19 @@ public class MicrowaveGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (isActive)
+        if (ToggleIsActive.isOn)
         {
-            if (float.TryParse(DisplayFrequency.text, out float ParseFrequency))
-                Frequency = ParseFrequency * 1e9f;
-            if (float.TryParse(DisplayOutputPower.text, out float ParseOutputPower))
-                OutputPower = ParseOutputPower;
-            if (Frequency != 0)
-            {
-                CalculateWaveNumber();
-                CalculateAnglePolarization();
-            }
+            Frequency = SliderFrequency.value * 1e6f;
+            DisplayFrequency.text = "Частота: " + SliderFrequency.value.ToString() + " МГц";
+            OutputPower = SliderOutputPower.value * -1;
+            DisplayOutputPower.text = "Выходная мощность: " + OutputPower.ToString() + " дБ";
+            CalculateWaveNumber();
+            CalculateAnglePolarization();
         }
         else
         {
+            DisplayFrequency.text = "Частота: ";
+            DisplayOutputPower.text = "Выходная мощность: ";
             Frequency = 0f;
             OutputPower = 0f;
             WaveNumber = 0f;
@@ -55,7 +57,7 @@ public class MicrowaveGenerator : MonoBehaviour
 
     private void CalculateAnglePolarization()
     {
-        AnglePolarization = 1.05f * WaveNumber
+        AnglePolarization = 1000  * 1.05f * WaveNumber
                                   * Mathf.Pow(RadiusFerriteRod / RadiusWaveguide, 2)
                                   * (1 / Frequency)
                                   * GyromagneticElectronRatio
