@@ -27,16 +27,16 @@ public class MicrowaveGenerator : MonoBehaviour
         if (ToggleIsActive.isOn)
         {
             Frequency = SliderFrequency.value * 1e6f;
-            DisplayFrequency.text = "Частота: " + SliderFrequency.value.ToString() + " МГц";
+            DisplayFrequency.text = SliderFrequency.value.ToString() + " МГц";
             OutputPower = SliderOutputPower.value * -1;
-            DisplayOutputPower.text = "Выходная мощность: " + OutputPower.ToString() + " дБ";
+            DisplayOutputPower.text = OutputPower.ToString() + " дБ";
             CalculateWaveNumber();
             CalculateAnglePolarization();
         }
         else
         {
-            DisplayFrequency.text = "Частота: ";
-            DisplayOutputPower.text = "Выходная мощность: ";
+            DisplayFrequency.text = "";
+            DisplayOutputPower.text = "";
             Frequency = 0f;
             OutputPower = 0f;
             WaveNumber = 0f;

@@ -28,7 +28,7 @@ public class MeasuringAmplifier : MonoBehaviour
             if (isZeroLevelOn.isOn)
                 ZeroLevel = SliderZeroLevel.value;
             DividerSignal = Mathf.Pow(10, SliderMultiplaySignal.value);
-            DisplayMultiplaySignal.text = "Делитель сигнала: x" + DividerSignal.ToString();
+            DisplayMultiplaySignal.text = "x" + DividerSignal.ToString();
         }
 
         if (MicrowaveGenerator.ToggleIsActive.isOn && ToggleIsActive.isOn)
@@ -39,15 +39,15 @@ public class MeasuringAmplifier : MonoBehaviour
 
         if (!ToggleIsActive.isOn)
         {
-            DisplayMultiplaySignal.text = "Делитель сигнала: ";
+            DisplayMultiplaySignal.text = "";
             DividerSignal = 1f;
-            OutputDisplayVoltage.text = "0 В";
+            OutputDisplayVoltage.text = "";
             Voltage = 0;
         }
 
         if (!MicrowaveGenerator.ToggleIsActive.isOn)
         {
-            OutputDisplayVoltage.text = "0 В";
+            OutputDisplayVoltage.text = "";
             Voltage = 0;
         }
     }

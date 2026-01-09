@@ -23,13 +23,13 @@ public class PowerSupply : MonoBehaviour
         if (ToggleIsActive.isOn)
         {
             Amperage = SliderAmperage.value;
-            DisplayAmperage.text = "Сила тока: " + Amperage.ToString() + " А";
+            DisplayAmperage.text = Amperage.ToString() + " А";
             CalculateStrengthMagneticField();
             CalculateMagnetizationFerrite();
         }
         else
         {
-            DisplayAmperage.text = "Сила тока: ";
+            DisplayAmperage.text = "";
             Amperage = 0f;
             CalculateStrengthMagneticField();
             CalculateMagnetizationFerrite();

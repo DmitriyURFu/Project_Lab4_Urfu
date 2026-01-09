@@ -12,6 +12,6 @@ public class PyramidalHorn : MonoBehaviour
     private void Update()
     {
         AngleRotate = SliderAngleRotate.value;
-        DisplayAngleRotate.text = "Угол поворота рупора: " + AngleRotate.ToString() +" градусов";
+        DisplayAngleRotate.text = AngleRotate.ToString() + '°';
     }
 }
