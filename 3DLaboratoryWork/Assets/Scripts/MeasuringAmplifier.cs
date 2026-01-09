@@ -29,12 +29,14 @@ public class MeasuringAmplifier : MonoBehaviour
                 ZeroLevel = SliderZeroLevel.value;
             DividerSignal = Mathf.Pow(10, SliderMultiplaySignal.value);
             DisplayMultiplaySignal.text = "x" + DividerSignal.ToString();
+            OutputDisplayVoltage.text = Voltage.ToString("F2") + " Â";
         }
 
         if (MicrowaveGenerator.ToggleIsActive.isOn && ToggleIsActive.isOn)
         {
             CalculateVoltage();
-            OutputDisplayVoltage.text = (Voltage * (1/DividerSignal) * Mathf.Pow(10, MicrowaveGenerator.OutputPower / 10) * 1000).ToString() + " Â";
+            float displayedVoltage = Voltage * (1f / DividerSignal) * Mathf.Pow(10f, MicrowaveGenerator.OutputPower / 10f) * 1000f;
+            OutputDisplayVoltage.text = displayedVoltage.ToString("F2") + " Â";
         }
 
         if (!ToggleIsActive.isOn)
@@ -47,13 +49,14 @@ public class MeasuringAmplifier : MonoBehaviour
 
         if (!MicrowaveGenerator.ToggleIsActive.isOn)
         {
-            OutputDisplayVoltage.text = "";
             Voltage = 0;
         }
     }
 
     private void CalculateVoltage()
     {
+        if (float.IsNaN(MicrowaveGenerator.AnglePolarization))
+            MicrowaveGenerator.AnglePolarization = 0f;
         var effectiveAnglePolarization = 0f;
         if (isReverseMode.isOn)
             effectiveAnglePolarization = 2f * MicrowaveGenerator.AnglePolarization;

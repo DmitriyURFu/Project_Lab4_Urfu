@@ -23,7 +23,7 @@ public class PowerSupply : MonoBehaviour
         if (ToggleIsActive.isOn)
         {
             Amperage = SliderAmperage.value;
-            DisplayAmperage.text = Amperage.ToString() + " À";
+            DisplayAmperage.text = Amperage.ToString("F2") + " À";
             CalculateStrengthMagneticField();
             CalculateMagnetizationFerrite();
         }
