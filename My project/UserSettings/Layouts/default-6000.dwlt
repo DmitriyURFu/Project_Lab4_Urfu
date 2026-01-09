@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -681,8 +681,8 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: -2344
-    m_LastClickedInstanceID: -2344
+    - m_Data: 49056
+    m_LastClickedInstanceID: 49056
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: []
     m_RenameOverlay:
@@ -759,7 +759,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 324
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -807,12 +807,12 @@ MonoBehaviour:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs:
-      - m_Data: -2344
+      - m_Data: 49056
       m_LastClickedID:
-        m_Data: -2344
+        m_Data: 49056
       m_ExpandedIDs:
+      - m_Data: -11546
       - m_Data: -1314
-      - m_Data: 48674
       - m_Data: 48726
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1336,9 +1336,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 960.26556, y: 479.29636, z: -0.11304852}
+    m_Target: {x: 933.49695, y: 380.0543, z: 2.1442723}
     speed: 2
-    m_Value: {x: 960.26556, y: 479.29636, z: -0.11304852}
+    m_Value: {x: 933.49695, y: 380.0543, z: 2.1442723}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1388,9 +1388,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 587.08
+    m_Target: 547.6404
     speed: 2
-    m_Value: 587.08
+    m_Value: 547.6404
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1408,7 +1408,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.029577907, y: 0.97014385, z: -0.15796466, w: -0.18165185}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 16}
@@ -1520,7 +1520,7 @@ MonoBehaviour:
       height: 864
     m_MinimalGUI: 1
   m_defaultScale: 0.53541666
-  m_LastWindowPixelSize: {x: 908.4, y: 483.6}
+  m_LastWindowPixelSize: {x: 1135.5, y: 604.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000

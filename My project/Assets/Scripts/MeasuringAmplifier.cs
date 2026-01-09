@@ -11,33 +11,36 @@ public class MeasuringAmplifier : MonoBehaviour
     [SerializeField] private Slider SliderMultiplaySignal;
     [SerializeField] private Toggle ToggleIsActive;
     [SerializeField] private Slider SliderZeroLevel;
+    [SerializeField] private Toggle isReverseMode;
+    [SerializeField] private Toggle isZeroLevelOn;
 
     private const float MaxVoltage = 100f;
     private const float MinVoltage = 4f;
 
     private float Voltage = 0f;
     private float ZeroLevel = 0f;
-    private float MultiplierSignal = 1f;
+    private float DividerSignal = 1f;
 
     private void Update()
     {
         if (ToggleIsActive.isOn)
         {
-            ZeroLevel = SliderZeroLevel.value;
-            MultiplierSignal = Mathf.Pow(10, SliderMultiplaySignal.value);
-            DisplayMultiplaySignal.text = "Множитель сигнала: x" + MultiplierSignal.ToString();
+            if (isZeroLevelOn.isOn)
+                ZeroLevel = SliderZeroLevel.value;
+            DividerSignal = Mathf.Pow(10, SliderMultiplaySignal.value);
+            DisplayMultiplaySignal.text = "Делитель сигнала: x" + DividerSignal.ToString();
         }
 
         if (MicrowaveGenerator.ToggleIsActive.isOn && ToggleIsActive.isOn)
         {
             CalculateVoltage();
-            OutputDisplayVoltage.text = (Voltage * (1/MultiplierSignal) * Mathf.Pow(10, MicrowaveGenerator.OutputPower / 10) * 1000).ToString() + " В";
+            OutputDisplayVoltage.text = (Voltage * (1/DividerSignal) * Mathf.Pow(10, MicrowaveGenerator.OutputPower / 10) * 1000).ToString() + " В";
         }
 
         if (!ToggleIsActive.isOn)
         {
-            DisplayMultiplaySignal.text = "Множитель сигнала: ";
-            MultiplierSignal = 1f;
+            DisplayMultiplaySignal.text = "Делитель сигнала: ";
+            DividerSignal = 1f;
             OutputDisplayVoltage.text = "0 В";
             Voltage = 0;
         }
@@ -51,7 +54,12 @@ public class MeasuringAmplifier : MonoBehaviour
 
     private void CalculateVoltage()
     {
-        Voltage = MaxVoltage * Mathf.Pow(Mathf.Sin(Mathf.Deg2Rad * (PyramidalHorn.AngleRotate - MicrowaveGenerator.AnglePolarization)), 2) +
-                  MinVoltage * Mathf.Pow(Mathf.Cos(Mathf.Deg2Rad * (PyramidalHorn.AngleRotate - MicrowaveGenerator.AnglePolarization)), 2) - ZeroLevel;
+        var effectiveAnglePolarization = 0f;
+        if (isReverseMode.isOn)
+            effectiveAnglePolarization = 2f * MicrowaveGenerator.AnglePolarization;
+        else
+            effectiveAnglePolarization = MicrowaveGenerator.AnglePolarization;
+        Voltage = MaxVoltage * Mathf.Pow(Mathf.Sin(Mathf.Deg2Rad * (PyramidalHorn.AngleRotate - effectiveAnglePolarization)), 2) +
+                  MinVoltage * Mathf.Pow(Mathf.Cos(Mathf.Deg2Rad * (PyramidalHorn.AngleRotate - effectiveAnglePolarization)), 2) - ZeroLevel;
     }
 }
