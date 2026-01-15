@@ -36,7 +36,11 @@ public class MeasuringAmplifier : MonoBehaviour
         {
             CalculateVoltage();
             float displayedVoltage = Voltage * (1f / DividerSignal) * Mathf.Pow(10f, MicrowaveGenerator.OutputPower / 10f) * 1000f;
-            OutputDisplayVoltage.text = displayedVoltage.ToString("F2") + " Â";
+            if (displayedVoltage > 100f)
+                OutputDisplayVoltage.text = "OVER";
+            else
+                OutputDisplayVoltage.text = displayedVoltage.ToString("F2") + " Â";
+
         }
 
         if (!ToggleIsActive.isOn)
