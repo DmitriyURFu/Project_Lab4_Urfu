@@ -7250,7 +7250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86681be7873781d489a0cec96c44af46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StepSlider
-  step: 5
+  step: 1
   slider: {fileID: 2062477649}
 --- !u!1 &2083979501 stripped
 GameObject:
